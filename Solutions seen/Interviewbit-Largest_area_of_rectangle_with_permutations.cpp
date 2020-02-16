@@ -17,7 +17,7 @@ int Solution::solve(vector<vector<int> > &A) {
     for(int i=0; i<m; i++){
         sort(hist[i], hist[i]+n);
         int maxrow=hist[i][0]*n;
-        for(int j=0; j<n; j++){
+        for(int j=1; j<n; j++){
                 maxrow=max(maxrow, hist[i][j]*(n-j));
         }
         ans=max(ans, maxrow);

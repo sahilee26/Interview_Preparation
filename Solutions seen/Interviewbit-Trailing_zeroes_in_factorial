@@ -1,0 +1,12 @@
+int Solution::trailingZeroes(int A) {
+    int ans1=0,div1=2, ans2=0, div2=5;
+    while(float(A/div1)){
+        ans1+=floor(A/div1);
+        div1*=2;        
+    }
+    while(float(A/div2)){
+        ans2+=floor(A/div2);
+        div2*=5;        
+    }
+    return min(ans1, ans2);
+}

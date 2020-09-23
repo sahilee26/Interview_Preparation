@@ -1,7 +1,7 @@
 int rec(string A, vector<vector<int>>dp, int i, int n, int stable, int B){
     if(stable>B || i>=n)
         return INT_MAX;
-    if(dp[i][stable-1]!=1e9)
+    if(dp[i][stable-1]!=-1)
         return dp[i][stable-1];
     int cost=INT_MAX;
     int white=0, black=0;
@@ -22,6 +22,6 @@ int rec(string A, vector<vector<int>>dp, int i, int n, int stable, int B){
 
 int Solution::arrange(string A, int B) {
     int n=A.length();
-    vector<vector<int> > dp (n,vector<int>(B, 1e9));
+    vector<vector<int> > dp (n,vector<int>(B, -1));
     return rec(A, dp, 0, n,  1, B);
 }

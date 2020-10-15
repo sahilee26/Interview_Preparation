@@ -33,10 +33,11 @@ int Solution::lca(TreeNode* A, int B, int C) {
         return -1;
     else{
         int i=0;
-        for(; i<path1.size() && i<path2.size(); i++){
-            if(path1[i]!=path2[i]){
+        while(i<path1.size() && i<path2.size()){
+            if(path1[i]==path2[i])
+                i++;
+            else
                 break;
-            }
         }
         return path1[i-1];
     }

@@ -11,7 +11,8 @@
 vector<vector<int> > Solution::verticalOrderTraversal(TreeNode* A) {
     
     vector<vector<int> > v;
-    
+    if(A==NULL)
+        return v;
     queue<pair<TreeNode*, int >> q;
     q.push({A, 0});
     

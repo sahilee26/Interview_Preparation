@@ -19,19 +19,23 @@ int Solution::solve(int A, vector<vector<int> > &B) {
         adj[B[i][1]].push_back(B[i][0]);
     }
     stack<int> s;
-    s.push(1);
-    while(!s.empty()){
-        int u=s.top();
-        vis[u]=true;
-        s.pop();
-        for(int i=0; i<adj[u].size(); i++){
-            if(!vis[adj[u][i]]){
-                s.push(adj[u][i]);
-                par[adj[u][i]]=u;
-            }
-            else{
-                if(par[u]!=adj[u][i])
-                    return true;
+    
+    for(int i=1; i<=A; i++){
+        if(!vis[i])
+            s.push(i);
+        while(!s.empty()){
+            int u=s.top();
+            vis[u]=true;
+            s.pop();
+            for(int i=0; i<adj[u].size(); i++){
+                if(!vis[adj[u][i]]){
+                    s.push(adj[u][i]);
+                    par[adj[u][i]]=u;
+                }
+                else{
+                    if(par[u]!=adj[u][i])
+                        return true;
+                }
             }
         }
     }

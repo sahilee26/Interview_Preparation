@@ -1,0 +1,76 @@
+We are rolling a dice and n is the number of times we rolled the dice and we know what number came. We stored this is an array [] A of size n. 'F' is the number which tells us the no. of times we forgot to note down the dice number. But we know the arithmetic mean of all the rolls and is denoted by M. Tell me all the possible values of F rolls.
+
+INPUT
+A [1,2,3,4]
+F =4
+M =6;
+
+output [0]
+
+
+INPUT
+A[1,5,6]
+F =4
+M =3;
+
+OutPUT
+[6,1,1,1]
+[2,3,3,1]
+.
+.
+.etc
+
+
+Implement this method: List<List<Integer>> result getAllSolution(int[] A, int F, int M)
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> ans;
+
+void listcomb(int sum, int mov, vector<int>& temp){
+    // cout<<sum<<" "<<mov<<endl;
+    if(sum<0 || mov<0)
+    		return;
+    if(sum==0 && mov==0){
+        for(int i=0; i<temp.size(); i++)
+            cout<<temp[i]<<" ";
+        cout<<endl;
+    	return ;
+    }
+    vector<int> local=temp;
+    for(int i=1; i<=6; i++){
+    		local.push_back(i);
+    		listcomb(sum-i, mov-1, local);
+    		local.pop_back();
+    }
+}
+
+int main(){
+    int M=3;
+    vector<vector<int> > ans;
+    int f=4;
+    int arr[3]={1, 5, 6};
+    int n=3;
+    if(M>6){
+    	cout<<"-1";
+    	return 0;
+    }
+    int sum=0;
+    for(int i=0; i<n; i++){
+    	sum+=arr[i];
+    }
+    int rem=((n+f)*M - sum);
+    if(rem/f>6){
+        cout<<"-1"<<endl;
+        return 0;
+    }
+    
+    vector<int> temp1;
+    listcomb(rem, f,  temp1);
+    
+    return 0;
+}
+
+
